@@ -4,7 +4,7 @@ Based off of [Apache/ModSecurity Tutorials](https://www.netnea.com/cms/apache-tu
 
 ## Docker 
 
-Download Debian Docker image:
+Download Debian image from DockerHub:
 ```bash
 docker pull debian
 ```
