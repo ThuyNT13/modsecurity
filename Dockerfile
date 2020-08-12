@@ -4,7 +4,7 @@ ENV apr_version=1.7.0 apr_util_version=1.6.1 apache_version=2.4.46
 
 WORKDIR usr/src/apache
 
-EXPOSE 80 
+EXPOSE 80 443
 
 RUN apt-get update && \
   # install necessary Debian packages
@@ -22,7 +22,7 @@ RUN apt-get update && \
     --enable-mpms-shared=event \
     --enable-mods-shared=all \
     --enable-nonportable-atomics=yes && \
-  make && make install && cd /usr/src/apache && \
+  make && make install && \
   # softlink apache
   ln -s /opt/apache-${apache_version} /apache
 
