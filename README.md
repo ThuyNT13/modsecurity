@@ -4,11 +4,6 @@ Based off of [Apache/ModSecurity Tutorials](https://www.netnea.com/cms/apache-tu
 
 ## Docker 
 
-Download Debian image from DockerHub:
-```bash
-docker pull debian
-```
-
 Build image from Dockerfile:
 ```bash
 docker image build -t <name_for_image>:<optional_tag> .
