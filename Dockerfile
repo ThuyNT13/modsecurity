@@ -6,7 +6,7 @@ WORKDIR /usr/src/apache
 
 EXPOSE 80 443
 
-RUN apt-get update && apt-get install -yq --no-install-recommends \
+RUN apt-get update -qq && apt-get install -yq --no-install-recommends \
   # install essential packages
   build-essential curl git wget \ 
   # install application dependencies
