@@ -37,5 +37,5 @@ ENV PATH $PATH:/apache/bin:/usr/src/apache/nikto/program
 
 COPY httpd.conf /apache/conf/httpd.conf
 
-# run with daemon off as a single process in foreground
+# run as a single process in foreground with daemon off
 CMD [ "httpd", "-X" ] 
