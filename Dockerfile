@@ -29,13 +29,11 @@ RUN apt-get update && apt-get install -y \
   # softlink apache
   ln -s /opt/apache-${apache_version} /apache
 
-WORKDIR /apache
-
 # download nikto GitHub repo as nikto Debian package is not free 
 RUN git clone https://github.com/sullo/nikto
 
 # append apache bin and nikto program path to PATH environment variable 
-ENV PATH $PATH:/apache/bin:/apache/nikto/program
+ENV PATH $PATH:/apache/bin:/usr/src/apache/nikto/program
 
 COPY httpd.conf /apache/conf/httpd.conf
 
