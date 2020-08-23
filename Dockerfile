@@ -7,7 +7,7 @@ WORKDIR /usr/src/apache
 EXPOSE 80 443
 
 RUN apt-get update && apt-get install -y \
-  # install necessary essential packages
+  # install essential packages
   build-essential curl git wget \ 
   # install dependencies
   gawk libssl-dev libexpat1-dev libpcre3-dev libxml2-dev libyajl-dev ruby ssl-cert zlibc zlib1g-dev && \
