@@ -6,11 +6,17 @@ WORKDIR /usr/src/apache
 
 EXPOSE 80 443
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -yq --no-install-recommends \
   # install essential packages
   build-essential curl git wget \ 
-  # install dependencies
+  # install application dependencies
   gawk libssl-dev libexpat1-dev libpcre3-dev libxml2-dev libyajl-dev ruby ssl-cert zlibc zlib1g-dev && \
+  # clear out /var/cache/apt/archives of installer packages
+  apt-get clean && \
+  # remove any other temp files
+  rm -rf /tmp/* /var/tmp/* && \
+  # uncomment to truncate log file to zero-length - empty content do not delete file
+  # truncate -s 0 /var/log/*log && \ 
   # download, unpack, configure compiler, and compile Apache web server and libraries
   wget https://www-eu.apache.org/dist/apr/apr-${APR_VERSION}.tar.bz2 && tar -xvjf apr-${APR_VERSION}.tar.bz2 && rm apr-${APR_VERSION}.tar.bz2 && mv apr-${APR_VERSION}/ apr/ && cd apr && \
   ./configure --prefix=/usr/local/apr && \
