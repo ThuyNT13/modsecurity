@@ -11,8 +11,10 @@ RUN apt-get update -qq && apt-get install -yq --no-install-recommends \
   build-essential curl git wget \ 
   # install application dependencies
   gawk libssl-dev libexpat1-dev libpcre3-dev libxml2-dev libyajl-dev ruby ssl-cert zlibc zlib1g-dev && \
-  # clear out /var/cache/apt/archives of installer packages
+  # clean out .deb installer files cached in /var/cache/apt/archives/
   apt-get clean && \
+  # clear out package lists generated after every apt-get update; unnecessary after installed
+  rm -rf /var/lib/apt/lists/* && \
   # remove any other temp files
   rm -rf /tmp/* /var/tmp/* && \
   # uncomment to truncate log file to zero-length - empty content do not delete file
