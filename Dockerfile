@@ -4,7 +4,7 @@ ENV APR_VERSION=1.7.0 APR_UTIL_VERSION=1.6.1 APACHE_VERSION=2.4.46
 
 WORKDIR /usr/src/apache
 
-EXPOSE 80 443
+EXPOSE 80
 
 RUN apt-get update -qq && apt-get install -yq --no-install-recommends \
   # install essential packages
@@ -42,8 +42,6 @@ RUN git clone https://github.com/sullo/nikto
 
 # append apache bin and nikto program path to PATH environment variable 
 ENV PATH $PATH:/apache/bin:/usr/src/apache/nikto/program
-
-COPY httpd.conf /apache/conf/httpd.conf
 
 # run as a single process in foreground with daemon off
 CMD [ "httpd", "-X" ] 
