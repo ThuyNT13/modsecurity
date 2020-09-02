@@ -4,7 +4,7 @@ ENV APR_VERSION=1.7.0 APR_UTIL_VERSION=1.6.1 APACHE_VERSION=2.4.46
 
 WORKDIR /usr/src/apache
 
-EXPOSE 80
+EXPOSE 80 443
 
 RUN apt-get update -qq && apt-get install -yq --no-install-recommends \
   # install essential packages
