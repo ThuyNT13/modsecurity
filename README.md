@@ -22,9 +22,11 @@ Run interactive (`-it`) container based off of modsec image. Container will auto
 $ docker container run --rm -it -p 8080:80 modsec:v1 sh
 ```
 
+<!-- FIXME neither works for now -->
 Inside container, make sure webserver is running:
 ```bash
 # curl http://localhost/index.html
+# curl http://localhost:80/index.html
 <html><body><h1>It works!</h1></body></html>
 ```
 
