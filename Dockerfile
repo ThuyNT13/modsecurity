@@ -8,7 +8,7 @@ EXPOSE 80 443
 
 RUN apt-get update -qq && apt-get install -yq --no-install-recommends \
   # install essential packages
-  build-essential curl git wget \ 
+  build-essential curl git net-tools wget \ 
   # install application dependencies
   gawk libssl-dev libexpat1-dev libpcre3-dev libxml2-dev libyajl-dev ruby ssl-cert zlibc zlib1g-dev && \
   # clean out .deb installer files cached in /var/cache/apt/archives/

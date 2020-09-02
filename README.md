@@ -24,17 +24,6 @@ $ docker container run --rm -it -p 8080:80 modsec:v1 sh
 
 Inside container, make sure webserver is running:
 ```bash
-# curl http://localhost:80/index.html
+# curl http://172.17.0.2/
 <html><body><h1>It works!</h1></body></html>
-```
-
-Also try `http://127.0.0.1:80/index.html`
-
-Script to determine if all modules loaded in confugration files is actually being used:
-```bash
-grep LoadModule /apache/conf/httpd.conf | awk '{print $2}' | sed -e "s/_module//" | while read M; do \
-echo "Module $M"; R=$(httpd -L | grep $M | cut -d\  -f1 | tr -d "<" | xargs | tr " " "|"); \
-egrep -q "$R" /apache/httpd.conf; \
-if [ $? -eq 0 ]; then echo "OK"; else echo "Not used"; fi; echo; \
-done
 ```
