@@ -24,11 +24,20 @@ $ docker container run --rm -it -p 8080:80 modsec:v1 sh
 
 Inside container, make sure webserver is running:
 ```bash
-# curl http://localhost:80/index.html
+# curl http://localhost/index.html
 <html><body><h1>It works!</h1></body></html>
 ```
 
-Also try `http://127.0.0.1:80/index.html`
+Or for more detail:
+```bash
+# curl --verbose http://localhost/index.html
+```
+
+Run a simple benchmarking test to get performance results:
+```bash
+ab -c 1 -n 1000 http://localhost/index.html
+```
+
 
 Script to determine if all modules loaded in confugration files is actually being used:
 ```bash
