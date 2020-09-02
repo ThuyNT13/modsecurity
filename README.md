@@ -38,7 +38,6 @@ Run a simple benchmarking test to get performance results:
 ab -c 1 -n 1000 http://localhost/index.html
 ```
 
-
 Script to determine if all modules loaded in confugration files is actually being used:
 ```bash
 grep LoadModule /apache/conf/httpd.conf | awk '{print $2}' | sed -e "s/_module//" | while read M; do \
