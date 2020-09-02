@@ -43,7 +43,7 @@ Script to determine if all modules loaded in confugration files is actually bein
 ```bash
 grep LoadModule /apache/conf/httpd.conf | awk '{print $2}' | sed -e "s/_module//" | while read M; do \
 echo "Module $M"; R=$(httpd -L | grep $M | cut -d\  -f1 | tr -d "<" | xargs | tr " " "|"); \
-egrep -q "$R" /apache/httpd.conf; \
+egrep -q "$R" /apache/conf/httpd.conf; \
 if [ $? -eq 0 ]; then echo "OK"; else echo "Not used"; fi; echo; \
 done
 ```
