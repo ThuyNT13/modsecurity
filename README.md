@@ -12,14 +12,14 @@ Based off of [Apache/ModSecurity Tutorials](https://www.netnea.com/cms/apache-tu
 
 ## Docker 
 
-Build image named `modsec` tagged with optional version tag `v1` from Dockerfile located in current directory `.`:
+Build image named `modsec` tagged with optional version tag `ssl` from Dockerfile located in current directory `.`:
 ```bash
-$ docker image build -t modsec:v1 .
+$ docker image build -t modsec:ssl .
 ```
 
 Run interactive (`-it`) container based off of modsec image. Container will autoremove upon exit (`--rm`).
 ```bash
-$ docker container run --rm -it -p 8080:80 modsec:v1 sh
+$ docker container run --rm -it -p 8080:80 modsec:ssl sh
 ```
 
 <!-- FIXME neither works for now -->
