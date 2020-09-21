@@ -39,15 +39,35 @@ done
 
 ## certs
 
-generate CSR and key: 
-```bash
-openssl req -new -newkey rsa:4096 -nodes -keyout snakeoil.key -out snakeoil.csr
+The `SSLCertificateFile` contains the X.509 certificate, which contains the _public_ key for encryption.
+
+The `SSLCertificateKeyFile` contains the _private_ key corresponding to the public key in the certificate. 
+
 ```
-generate PEM and self-sign with key:
-```bash
-openssl x509 -req -sha256 -days 365 -in snakeoil.csr -signkey snakeoil.key -out snakeoil.pem
+SSLCertificateKeyFile   /etc/ssl/private/snakeoil.key
+SSLCertificateFile      /etc/ssl/certs/snakeoil.pem
 ```
+
+generate a CSR (Certificate Signing Request) which contains the public key and key: 
+```bash
+openssl req -new -newkey rsa:4096 -nodes \
+  -keyout snakeoil.key \
+  -out snakeoil.csr
+```
+generate PEM-encoded file of the X.509 certificate and CSR, and self-sign with key:
+```bash
+openssl -x509 -req -sha256 -days 365 \
+  -in snakeoil.csr \
+  -signkey snakeoil.key \
+  -out snakeoil.pem
+```
+
+**Note:**
+> The version of OpenSSL in macOS is incompatible with the type of certificate Docker requires.
 
 ## References
 - [A 6 Part Introductory OpenSSL Tutorial](https://www.keycdn.com/blog/openssl-tutorial)
 - [Let's Encrypt - How It Works](https://letsencrypt.org/how-it-works/)
+- [Verify repository client with certificates](https://docs.docker.com/engine/security/certificates/)
+- [How To Secure a Containerized Node.js Application with Nginx, Let's Encrypt, and Docker Compose](https://www.digitalocean.com/community/tutorials/how-to-secure-a-containerized-node-js-application-with-nginx-let-s-encrypt-and-docker-compose)
+- [Securing Docker with TLS certificates](https://tech.paulcz.net/blog/secure-docker-with-tls/)
