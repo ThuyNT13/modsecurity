@@ -48,12 +48,14 @@ SSLCertificateKeyFile   /etc/ssl/private/snakeoil.key
 SSLCertificateFile      /etc/ssl/certs/snakeoil.pem
 ```
 
-generate a CSR (Certificate Signing Request) which contains the public key and key: 
+Generate a CSR (Certificate Signing Request), which contains the public key, and a 4096-bit private key using the RSA algorithm: 
 ```bash
-openssl req -new -newkey rsa:4096 -nodes \
-  -keyout snakeoil.key \
+openssl req \
+  -new -newkey rsa:4096 -nodes -keyout snakeoil.key \
   -out snakeoil.csr
 ```
+The `-new` option, which can be implied but is explicit here, indicates that a CSR is being generated. The `-nodes` option specifies that the private key is not encrypted with a pass phrase. 
+
 generate PEM-encoded file of the X.509 certificate and CSR, and self-sign with key:
 ```bash
 openssl -x509 -req -sha256 -days 365 \
